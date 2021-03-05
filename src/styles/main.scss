@@ -1,0 +1,100 @@
+@import './variables.scss';
+/*
+  General
+*/
+body {
+  background-color: $black;
+  color: $white;
+}
+h1, h2 {
+  color: $white;
+  font-size: 2rem;
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+button {
+  outline: none;
+  border: none;
+  border-radius: 4px;
+}
+/*
+  Header component
+*/
+.header {
+  background-color: $dark-grey;
+  padding: 1rem;
+  .header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+  .header__title {
+    color: $white;
+    margin: 0;
+  }
+  .header__btn {
+    padding: .8rem 1.2rem;
+    color: $white;
+    background: linear-gradient(135deg, #9785E0, #85A9E0);;
+  }
+}
+/*
+  Main component
+*/
+.main {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 2fr;
+  padding: 3rem 1rem;
+}
+/*
+  Form component
+*/
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form__input {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: $white;
+  border-radius: 10px;
+  border: none;
+  background-color: $dark-grey;
+  font-size: 1rem;
+  outline: none;
+  &::placeholder {
+    font-size: 1rem;
+    color: $grey;
+  }
+}
+.form__error {
+  border: 1px solid $error;
+}
+.form__btn {
+  padding: 1.1rem;
+  border-radius: 10px;
+  color: $dark-grey;
+  background-color: $white;
+  margin-bottom: 1rem;
+  outline: none;
+  font-weight: 700;
+  &:focus { 
+    outline: none;
+  }
+  &:hover {
+    background: linear-gradient(135deg, #9785E0, #85A9E0);
+    color: $white;
+  }
+}
+.form__errorMessage {
+  color: $white;
+  text-align: center;
+  padding: 1rem;
+  background-color: $error;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
