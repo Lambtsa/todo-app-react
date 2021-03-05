@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Form from './components/Form';
 import TaskList from './components/TaskList';
+import Task from './components/Task';
 import Footer from './components/Footer';
 
 describe('The Header component', () => {
@@ -78,9 +79,15 @@ describe('The Form component', () => {
 describe('The TaskList component', () => {
   test('renders a header and a ul', () => {
     render(<TaskList />);
-    const header = screen.getByRole('heading');
     const list = screen.getByRole('list');
-    expect(header).toBeInTheDocument();
     expect(list).toBeInTheDocument();
-  })
-})
+  });
+});
+
+describe('The Task component', () => {
+  test('renders a header and a ul', () => {
+    render(<Task />);
+    const listItem = screen.getByRole('listitem');
+    expect(listItem).toBeInTheDocument();
+  });
+});
