@@ -47,7 +47,7 @@ button {
 .main {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   padding: 3rem 1rem;
   max-width: 1140px;
   margin: 0 auto;
@@ -103,6 +103,10 @@ button {
 /*
   Task Component
 */
+.taskList {
+  display: flex;
+  flex-direction: column;
+}
 .listItem {
   display: flex;
   justify-content: space-between;
@@ -110,8 +114,11 @@ button {
   color: $white;
   margin-bottom: 1rem;
   border-radius: 10px;
+  text-align: left;
   background-color: $dark-grey;
   align-items: center;
+  width: 100%;
+  order: 1;
   cursor: pointer;
 }
 .listItem__details {
@@ -145,4 +152,26 @@ p.listItem__tag {
   margin-bottom: .5rem;
   font-size: 1.2rem;
   text-transform: capitalize;
+}
+
+.listItem.done {
+  order: 2;
+}
+/*
+  Footer Component
+*/
+.footer {
+  text-align: center;
+  background-color: $dark-grey;
+  padding: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .main {
+    grid-template-columns: 1fr 2fr;
+  }
+  form {
+    box-shadow: none;
+    margin: 0;
+    padding: 1rem 0;
+  }
 }

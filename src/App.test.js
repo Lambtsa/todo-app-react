@@ -6,6 +6,7 @@ import Form from './components/Form';
 import Task from './components/Task';
 import Footer from './components/Footer';
 
+
 describe('The Header component', () => {
   test('renders title, and a button ', () => {
     render(<Header />);
@@ -76,8 +77,16 @@ describe('The Form component', () => {
 });
 
 describe('The Task component', () => {
-  test('renders a header and a ul', () => {
-    render(<Task />);
+  test('renders a list item', () => {
+    const data = {
+      id: 1,
+      color: 'hsl(36, 60%, 70%)',
+      content: {
+        title: 'test',
+        description: 'test',
+      },
+    }
+    render(<Task details={data}/>);
     const listItem = screen.getByRole('listitem');
     expect(listItem).toBeInTheDocument();
   });

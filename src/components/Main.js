@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Form from './Form';
 import Task from './Task';
 import createTaskItem from '../helpers/helpers';
 
 const Main = () => {
-  const [taskList, setTaskList] = useState([]);
+  const [
+    taskList,
+    setTaskList,
+  ] = useState(localStorage.tasks ? JSON.parse(localStorage.tasks) : []);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState(false);
+  const [key, setKey] = useState(taskList.length);
 
-  const handleOnClick = () => {
+  useEffect(() => {
+    localStorage.tasks = JSON.stringify(taskList);
+    setKey(key + 1);
+  }, [taskList]);
 
+  const handleTaskDelete = id => {
+    const newTaskList = taskList.filter(e => e.id !== id);
+    setTaskList(newTaskList);
   };
 
   const handleFormSubmit = e => {
@@ -19,7 +29,7 @@ const Main = () => {
     if (title === '') {
       setError(true);
     } else {
-      const item = createTaskItem(title, description);
+      const item = createTaskItem(key, title, description);
       setTaskList([item, ...taskList]);
       setTitle('');
       setDescription('');
@@ -39,9 +49,14 @@ const Main = () => {
           handleFormSubmit={handleFormSubmit} />
         <section role="contentinfo">
           <h2>Tasks</h2>
-          <ul>
+          <ul className="taskList">
             {taskList && taskList
-              .map(task => <Task onTaskClick={handleOnClick} key={task.id} details={task} />)}
+              .map(task => (
+                <Task
+                  key={task.id}
+                  details={task}
+                  handleTaskDelete={handleTaskDelete} />
+              ))}
           </ul>
         </section>
       </main>
