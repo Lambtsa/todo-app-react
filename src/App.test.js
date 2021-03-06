@@ -3,7 +3,6 @@ import App from './App';
 import Header from './components/Header';
 import Main from './components/Main';
 import Form from './components/Form';
-import TaskList from './components/TaskList';
 import Task from './components/Task';
 import Footer from './components/Footer';
 
@@ -73,14 +72,6 @@ describe('The Form component', () => {
     expect(form).toBeInTheDocument();
     expect(inputs).toHaveLength(2);
     expect(button).toBeInTheDocument();
-  });
-});
-
-describe('The TaskList component', () => {
-  test('renders a header and a ul', () => {
-    render(<TaskList />);
-    const list = screen.getByRole('list');
-    expect(list).toBeInTheDocument();
   });
 });
 

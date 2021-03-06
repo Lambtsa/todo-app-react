@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Form from './Form';
-import TaskList from './TaskList';
+import Task from './Task';
 import createTaskItem from '../helpers/helpers';
 
 const Main = () => {
@@ -10,14 +10,16 @@ const Main = () => {
   const [description, setDescription] = useState('');
   const [error, setError] = useState(false);
 
+  const handleOnClick = () => {
+
+  };
+
   const handleFormSubmit = e => {
     e.preventDefault();
     if (title === '') {
       setError(true);
     } else {
       const item = createTaskItem(title, description);
-      /* eslint-disable-next-line */
-      console.log(item)
       setTaskList([item, ...taskList]);
       setTitle('');
       setDescription('');
@@ -35,7 +37,13 @@ const Main = () => {
           description={description}
           setDescription={setDescription}
           handleFormSubmit={handleFormSubmit} />
-        <TaskList taskList={taskList} />
+        <section role="contentinfo">
+          <h2>Tasks</h2>
+          <ul>
+            {taskList && taskList
+              .map(task => <Task onTaskClick={handleOnClick} key={task.id} details={task} />)}
+          </ul>
+        </section>
       </main>
     </>
   );
