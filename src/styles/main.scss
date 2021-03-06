@@ -7,7 +7,6 @@ body {
   color: $white;
 }
 h1, h2 {
-  color: $white;
   font-size: 2rem;
   text-transform: capitalize;
   margin-bottom: 1rem;
@@ -21,8 +20,15 @@ button {
   Header component
 */
 .header {
-  background-color: $dark-grey;
   padding: 1rem 0;
+  &.light {
+    background-color: $white;
+    color: $dark-grey;
+  }
+  &.dark {
+    background-color: $dark-grey;
+    color: $white;
+  }
   .header__container {
     display: flex;
     align-items: center;
@@ -32,7 +38,6 @@ button {
     margin: 0 auto;
   }
   .header__title {
-    color: $white;
     margin: 0;
   }
   .header__btn {
@@ -156,15 +161,31 @@ p.listItem__tag {
 
 .listItem.done {
   order: 2;
+  .listItem__title, .listItem__subtitle {
+    text-decoration: line-through;
+  }
+  .listItem__subtitle {
+    color: $grey;
+  }
 }
 /*
   Footer Component
 */
 .footer {
   text-align: center;
-  background-color: $dark-grey;
   padding: 1.5rem;
+  &.dark {
+    background-color: $dark-grey;
+    color: $white;
+  }
+  &.light {
+    background-color: $white;
+    color: $dark-grey;
+  }
 }
+/*
+  Media Queries
+*/
 @media screen and (min-width: 768px) {
   .main {
     grid-template-columns: 1fr 2fr;
@@ -173,5 +194,92 @@ p.listItem__tag {
     box-shadow: none;
     margin: 0;
     padding: 1rem 0;
+  }
+}
+/*
+  Switch Component
+*/
+.toggle-switch {
+  position: relative;
+  width: 75px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  text-align: left;
+  &-checkbox {
+    display: none;
+  }
+  &-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0 solid $grey;
+    border-radius: 20px;
+    margin: 0;
+  }
+  &-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+    &:before,
+    &:after {
+      display: block;
+      float: left;
+      width: 50%;
+      height: 2rem;
+      padding: 0;
+      line-height: 31px;
+      font-size: 1.2rem;
+      color: $white;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+    &:before {
+      content: "🌑";
+      text-transform: uppercase;
+      padding-left: 10px;
+      background-color: #f90;
+      color: #fff;
+    }
+  }
+  &-disabled {
+    background-color: $grey;
+    cursor: not-allowed;
+    &:before {
+      background-color: $grey;
+      cursor: not-allowed;
+    }
+  }
+  &-inner:after {
+    content: "🌕";
+    text-transform: uppercase;
+    padding-right: 10px;
+    background-color: $grey;
+    color: $white;
+    text-align: right;
+  }
+  &-switch {
+    display: block;
+    width: 24px;
+    margin: 5px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 40px;
+    border: 0 solid #bbb;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+  }
+  &-checkbox:checked + &-label {
+    .toggle-switch-inner {
+      margin-left: 0;
+    }
+    .toggle-switch-switch {
+      right: 0px;
+    }
   }
 }

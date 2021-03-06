@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../helpers/ThemeProvider';
+import ToggleSwitch from './ToggleSwitch';
 
-const Header = () => (
-  <>
-    <header className="header">
-      <nav className="header__container">
-        <h1 className="header__title">title</h1>
-        <button className="header__btn" type="button">button</button>
-      </nav>
-    </header>
-  </>
-);
+const Header = () => {
+  const { theme, handleThemeToggle } = useContext(ThemeContext);
+  return (
+    <>
+      <header className={`header ${theme}`}>
+        <nav className="header__container">
+          <h1 className="header__title">title</h1>
+          <button onClick={handleThemeToggle} className="header__btn" type="button">button</button>
+          <ToggleSwitch />
+        </nav>
+      </header>
+    </>
+  );
+};
 
 export default Header;

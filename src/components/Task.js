@@ -19,8 +19,8 @@ const Task = ({ details, handleTaskDelete }) => {
       style={status === 'pending' ? { backgroundColor: details.color } : { backgroundColor: '#1C190D' }}>
       <div className="listItem__details">
         <div>
-          <h3>{details.content.title}</h3>
-          <p>{details.content.description || 'No description'}</p>
+          <h3 className="listItem__title">{details.content.title}</h3>
+          <p className="listItem__subtitle">{details.content.description || 'No description'}</p>
         </div>
         <p
           className={`listItem__tag ${status}`}
