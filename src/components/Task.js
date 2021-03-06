@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Task = () => (
+const Task = ({ taskList }) => (
   <li className="listItem pending">
     <div className="listItem__details">
       <div>
-        <h3>title</h3>
-        <p>description</p>
+        <h3>{taskList.title}</h3>
+        <p>{taskList.description}</p>
       </div>
       <p className="listItem__tag">pending</p>
     </div>

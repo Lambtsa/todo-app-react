@@ -1,54 +1,59 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
-const Form = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [error, setError] = useState(false);
+class Form extends Component {
+  constructor(props) {
+    super(props);
 
-  const handleTitleChange = e => {
-    setTitle(e.target.value);
-    setError(false);
-  };
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
 
-  const handleDescriptionChange = e => {
-    setDescription(e.target.value);
-  };
+  handleTitleChange(event) {
+    /* eslint-disable-next-line */
+    this.props.onTitleChange(event.target.value);
+  }
 
-  const handleFormSubmit = e => {
-    e.preventDefault();
-    if (title === '') {
-      setError(true);
-    } else {
-      /* eslint-disable-next-line */
-      console.log(title)
-    }
-  };
+  handleDescriptionChange(event) {
+    /* eslint-disable-next-line */
+    this.props.onDescriptionChange(event.target.value);
+  }
 
-  return (
-    <section role="contentinfo">
-      <h2 className="form__title">New Task</h2>
-      {error && <p className="form__errorMessage">Please enter a title for your task.</p>}
-      <form onSubmit={handleFormSubmit} className="form" name="Add New Task">
-        <input
-          className={error ? 'form__input form__error' : 'form__input'}
-          type="text"
-          placeholder="Task name"
-          autoComplete="off"
-          maxLength="30"
-          value={title}
-          onChange={handleTitleChange} />
-        <input
-          className="form__input"
-          type="text"
-          placeholder="Task description"
-          autoComplete="off"
-          maxLength="30"
-          value={description}
-          onChange={handleDescriptionChange} />
-        <button className="form__btn" type="submit">Add task</button>
-      </form>
-    </section>
-  );
-};
+  handleFormSubmit(event) {
+    event.preventDefault();
+    /* eslint-disable-next-line */
+    this.props.onFormSubmit();
+  }
+
+  render() {
+    const { title, description } = this.props;
+    return (
+      <>
+        <section role="contentinfo">
+          <h2 className="form__title">New Task</h2>
+          <form onSubmit={this.handleFormSubmit} className="form" name="Add New Task">
+            <input
+              className="form__input"
+              type="text"
+              placeholder="Task name"
+              autoComplete="off"
+              value={title}
+              onChange={this.handleTitleChange}
+              maxLength="30" />
+            <input
+              className="form__input"
+              type="text"
+              placeholder="Task description"
+              autoComplete="off"
+              value={description}
+              onChange={this.handleDescriptionChange}
+              maxLength="30" />
+            <button className="form__btn" type="submit">Add task</button>
+          </form>
+        </section>
+      </>
+    );
+  }
+}
 
 export default Form;

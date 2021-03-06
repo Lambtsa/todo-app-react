@@ -1,11 +1,11 @@
 import React from 'react';
 import Task from './Task';
 
-const TaskList = () => (
+const TaskList = ({ taskList }) => (
   <section role="contentinfo">
     <h2>Tasks</h2>
     <ul>
-      <Task />
+      <Task taskList={taskList} />
     </ul>
   </section>
 );
