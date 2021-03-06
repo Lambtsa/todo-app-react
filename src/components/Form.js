@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Form = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [error, setError] = useState(false);
+const Form = props => {
+  const {
+    error,
+    setError,
+    title,
+    setTitle,
+    description,
+    setDescription,
+    handleFormSubmit,
+  } = props;
 
   const handleTitleChange = e => {
     setTitle(e.target.value);
@@ -12,16 +18,6 @@ const Form = () => {
 
   const handleDescriptionChange = e => {
     setDescription(e.target.value);
-  };
-
-  const handleFormSubmit = e => {
-    e.preventDefault();
-    if (title === '') {
-      setError(true);
-    } else {
-      /* eslint-disable-next-line */
-      console.log(title)
-    }
   };
 
   return (
