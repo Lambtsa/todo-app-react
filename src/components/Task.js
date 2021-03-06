@@ -5,7 +5,7 @@ const Task = () => (
     <div className="listItem__details">
       <div>
         <h3>title</h3>
-        <p>No description added</p>
+        <p>description</p>
       </div>
       <p className="listItem__tag">pending</p>
     </div>
