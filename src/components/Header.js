@@ -8,7 +8,7 @@ const Header = () => {
     <>
       <header className={`header ${theme}`}>
         <nav className="header__container">
-          <h1 className="header__title">title</h1>
+          <h1 className="header__title">Task list</h1>
           <ToggleSwitch />
         </nav>
       </header>

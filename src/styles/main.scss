@@ -7,9 +7,14 @@ body {
   color: $white;
 }
 h1, h2 {
-  font-size: 2rem;
   text-transform: capitalize;
   margin-bottom: 1rem;
+}
+h1 {
+  font-size: 1.5rem;
+}
+h2 {
+  font-size: 2rem;
 }
 button {
   outline: none;

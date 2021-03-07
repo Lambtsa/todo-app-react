@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, } from '@testing-library/react';
+import { ThemeProvider } from './helpers/ThemeProvider';
 import App from './App';
 import Header from './components/Header';
 import Main from './components/Main';
@@ -6,25 +7,24 @@ import Form from './components/Form';
 import Task from './components/Task';
 import Footer from './components/Footer';
 
-
 describe('The Header component', () => {
-  test('renders title, and a button ', () => {
-    render(<Header />);
+  test('renders title, and a checkbox toggle switch ', () => {
+    render(<ThemeProvider><Header /></ThemeProvider>);
     const header = screen.getByRole('banner');
     const title = screen.getByRole('heading');
-    const button = screen.getByRole('button');
+    const switchCheckbox = screen.getByRole('checkbox');
     expect(header).toBeInTheDocument();
     expect(title).toBeInTheDocument();
-    expect(button).toBeInTheDocument();
+    expect(switchCheckbox).toBeInTheDocument();
   });
   test('is rendered with the right classNames', () => {
-    render(<Header />);
+    render(<ThemeProvider><Header /></ThemeProvider>);
     const header = screen.getByRole('banner');
     const title = screen.getByRole('heading');
-    const button = screen.getByRole('button');
+    const switchCheckbox = screen.getByRole('checkbox');
     expect(header).toHaveClass('header');
     expect(title).toHaveClass('header__title');
-    expect(button).toHaveClass('header__btn');
+    expect(switchCheckbox).toHaveClass('switch-checkbox');
   });
   test('renders the Header component inside the App', () => {
     render(<App />);
@@ -35,10 +35,11 @@ describe('The Header component', () => {
 
 describe('The Footer component', () => {
   test('renders a Footer component', () => {
-    render(<Footer />);
+    render(<ThemeProvider><Footer /></ThemeProvider>);
     const footer = screen.getByRole('contentinfo');
+    const svgImg = screen.getByRole('img');
     expect(footer).toBeInTheDocument();
-    expect(footer).toHaveTextContent('©2021 Tom Lamb. All rights reserved')
+    expect(svgImg).toBeInTheDocument();
   });
 });
 
@@ -87,7 +88,7 @@ describe('The Task component', () => {
       },
     }
     render(<Task details={data}/>);
-    const listItem = screen.getByRole('listitem');
-    expect(listItem).toBeInTheDocument();
+    const button = screen.getByRole('button');
+    expect(button).toBeInTheDocument();
   });
 });

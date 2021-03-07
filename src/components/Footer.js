@@ -5,7 +5,7 @@ import githubLight from '../assets/github-light.svg';
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
-  /* eslint-disable */
+
   return (
     <>
       <footer className={`footer ${theme}`}>

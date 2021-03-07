@@ -10,9 +10,9 @@ const Task = ({ details, handleTaskDelete }) => {
       setStatus('pending');
     }
   };
-  /* eslint-disable */
+
   return (
-    <li
+    <button
       onClick={handleTaskClick}
       type="button"
       className={`listItem ${status}`}
@@ -29,7 +29,7 @@ const Task = ({ details, handleTaskDelete }) => {
         </p>
       </div>
       {status === 'done' && <button type="button" onClick={() => handleTaskDelete(details.id)} className="listItem__btn">Remove</button>}
-    </li>
+    </button>
   );
 };
 
