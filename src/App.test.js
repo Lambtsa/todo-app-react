@@ -69,7 +69,7 @@ describe('The Footer component', () => {
 
 describe('The Main component', () => {
   test('renders the Main component wrapper', () => {
-    render(<Main />);
+    render(<ThemeProvider><Main /></ThemeProvider>);
     const main = screen.getByRole('main');
     expect(main).toBeInTheDocument();
   });
@@ -79,7 +79,7 @@ describe('The Main component', () => {
     expect(main).toBeInTheDocument();
   });
   test('renders 2 sections inside the Main component', () => {
-    render(<Main />);
+    render(<ThemeProvider><Main /></ThemeProvider>);
     const sections = screen.getAllByRole('contentinfo');
     expect(sections).toHaveLength(2);
   });
@@ -87,7 +87,7 @@ describe('The Main component', () => {
 
 describe('The Form component', () => {
   test('renders a section, a header, a form, 2 inputs and a button', () => {
-    render(<Form />);
+    render(<ThemeProvider><Form /></ThemeProvider>);
     const section = screen.getByRole('contentinfo')
     const header = screen.getByRole('heading');
     const form = screen.getByRole('form');
@@ -116,7 +116,7 @@ describe('The Task component', () => {
     expect(button).toBeInTheDocument();
   });
   test('renders a list item after form submit', () => {
-    render(<Main />);
+    render(<ThemeProvider><Main /></ThemeProvider>);
     const button = screen.getByRole('button');
     const titleField = screen.getByPlaceholderText('Task name');
     expect(button).toBeInTheDocument();
@@ -128,7 +128,7 @@ describe('The Task component', () => {
     expect(newTaskItem).toBeInTheDocument()
   });
   test('show error message if title field is empty on submit', () => {
-    render(<Main />);
+    render(<ThemeProvider><Main /></ThemeProvider>);
     const button = screen.getByRole('button');
     const titleField = screen.getByPlaceholderText('Task name');
     expect(button).toBeInTheDocument();

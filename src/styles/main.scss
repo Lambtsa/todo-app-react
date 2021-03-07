@@ -31,6 +31,7 @@ button {
 */
 .header {
   padding: 1rem 0;
+  z-index: 1000;
   &.light {
     background-color: $white;
     color: $dark-grey;
@@ -56,10 +57,21 @@ button {
     background: linear-gradient(135deg, #9785E0, #85A9E0);;
   }
 }
+.header__img {
+  width: 3rem;
+}
 /*
   Main component
 */
-.main {
+.main.dark {
+  background-color: $black;
+  color: $white;
+}
+.main.light {
+  background-color: $white;
+  color: $dark-grey;
+}
+.main__container {
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
@@ -71,6 +83,48 @@ button {
 /*
   Form component
 */
+.form__container.dark {
+  .form__error {
+    border: 1px solid $error !important;
+  }
+  .form__input {
+    background-color: $dark-grey;
+    color: $white;
+    border: none;
+    &::placeholder {
+      color: $grey;
+    }
+  }
+  .form__btn {
+    color: $dark-grey;
+    background-color: $white;
+    &:hover {
+      background: linear-gradient(135deg, #9785E0, #85A9E0);
+      color: $white;
+    }
+  }
+}
+.form__container.light {
+  .form__error {
+  border: 1px solid $error !important;
+  }
+  .form__input {
+    background-color: $white;
+    color: $dark-grey;
+    border: 1px solid $dark-grey;
+    &::placeholder {
+      color: $grey;
+    }
+  }
+  .form__btn {
+    color: $white;
+    background-color: $dark-grey;
+    &:hover {
+      background: linear-gradient(135deg, #9785E0, #85A9E0);
+      color: $white;
+    }
+  }
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -78,34 +132,21 @@ button {
 .form__input {
   padding: 1rem;
   margin-bottom: 1rem;
-  color: $white;
   border-radius: 10px;
-  border: none;
-  background-color: $dark-grey;
   font-size: 1rem;
   outline: none;
   &::placeholder {
     font-size: 1rem;
-    color: $grey;
   }
-}
-.form__error {
-  border: 1px solid $error;
 }
 .form__btn {
   padding: 1.1rem;
   border-radius: 10px;
-  color: $dark-grey;
-  background-color: $white;
   margin-bottom: 1rem;
   outline: none;
   font-weight: 700;
   &:focus { 
     outline: none;
-  }
-  &:hover {
-    background: linear-gradient(135deg, #9785E0, #85A9E0);
-    color: $white;
   }
 }
 .form__errorMessage {
@@ -113,7 +154,6 @@ button {
   text-align: center;
   padding: 1rem;
   background-color: $error;
-  margin-bottom: 1rem;
   border-radius: 10px;
 }
 /*
@@ -201,11 +241,10 @@ p.listItem__tag {
   Media Queries
 */
 @media screen and (min-width: 768px) {
-  .main {
+  .main__container {
     grid-template-columns: 1fr 2fr;
   }
   form {
-    box-shadow: none;
     margin: 0;
     padding: 1rem 0;
   }

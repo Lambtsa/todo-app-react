@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useContext } from 'react';
+import { ThemeContext } from '../helpers/ThemeProvider';
 import Form from './Form';
 import Task from './Task';
 import createTaskItem from '../helpers/helpers';
 
 const Main = () => {
+  const { theme } = useContext(ThemeContext);
   const [
     taskList,
     setTaskList,
@@ -38,27 +39,29 @@ const Main = () => {
 
   return (
     <>
-      <main className="main">
-        <Form
-          error={error}
-          setError={setError}
-          title={title}
-          setTitle={setTitle}
-          description={description}
-          setDescription={setDescription}
-          handleFormSubmit={handleFormSubmit} />
-        <section role="contentinfo">
-          <h2>Tasks</h2>
-          <ul className="taskList">
-            {taskList && taskList
-              .map(task => (
-                <Task
-                  key={task.id}
-                  details={task}
-                  handleTaskDelete={handleTaskDelete} />
-              ))}
-          </ul>
-        </section>
+      <main className={`main ${theme}`}>
+        <div className="main__container">
+          <Form
+            error={error}
+            setError={setError}
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            setDescription={setDescription}
+            handleFormSubmit={handleFormSubmit} />
+          <section role="contentinfo">
+            <h2>Tasks</h2>
+            <ul className="taskList">
+              {taskList && taskList
+                .map(task => (
+                  <Task
+                    key={task.id}
+                    details={task}
+                    handleTaskDelete={handleTaskDelete} />
+                ))}
+            </ul>
+          </section>
+        </div>
       </main>
     </>
   );

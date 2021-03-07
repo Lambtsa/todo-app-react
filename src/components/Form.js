@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../helpers/ThemeProvider';
 
 const Form = props => {
+  const { theme } = useContext(ThemeContext);
   const {
     error,
     setError,
@@ -21,7 +23,7 @@ const Form = props => {
   };
 
   return (
-    <section role="contentinfo">
+    <section className={`form__container ${theme}`} role="contentinfo">
       <h2 className="form__title">New Task</h2>
       {error && <p className="form__errorMessage">Please enter a title for your task.</p>}
       <form onSubmit={handleFormSubmit} className="form" name="Add New Task">
