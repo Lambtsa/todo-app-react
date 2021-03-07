@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <>
       <footer className={`footer ${theme}`}>
-        <a href="https://github.com/Lambtsa/todo-app-react">
+        <a href="https://github.com/Lambtsa/todo-app-react" rel="noreferrer" target="_blank">
           <img className="footer__img" src={theme === 'dark' ? githubLight : githubDark} alt={`Github logo ${theme}`} />
         </a>
       </footer>

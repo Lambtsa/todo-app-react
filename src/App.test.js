@@ -6,6 +6,11 @@ import Main from './components/Main';
 import Form from './components/Form';
 import Task from './components/Task';
 import Footer from './components/Footer';
+import userEvent from '@testing-library/user-event';
+
+beforeEach(() => {
+  window.localStorage.setItem('tasks', JSON.stringify([]));
+})
 
 describe('The Header component', () => {
   test('renders title, and a checkbox toggle switch ', () => {
@@ -26,6 +31,15 @@ describe('The Header component', () => {
     expect(title).toHaveClass('header__title');
     expect(switchCheckbox).toHaveClass('switch-checkbox');
   });
+  test('toggles the theme between light and dark', () => {
+    render(<ThemeProvider><Header /></ThemeProvider>);
+    const header = screen.getByRole('banner');
+    const switchCheckbox = screen.getByRole('checkbox');
+    userEvent.click(switchCheckbox);
+    expect(header).toHaveClass('header dark');
+    userEvent.click(switchCheckbox);
+    expect(header).toHaveClass('header light');
+  })
   test('renders the Header component inside the App', () => {
     render(<App />);
     const header = screen.getByRole('banner');
@@ -38,9 +52,19 @@ describe('The Footer component', () => {
     render(<ThemeProvider><Footer /></ThemeProvider>);
     const footer = screen.getByRole('contentinfo');
     const svgImg = screen.getByRole('img');
+    const link = screen.getByRole('link');
     expect(footer).toBeInTheDocument();
     expect(svgImg).toBeInTheDocument();
+    expect(link).toBeInTheDocument();
   });
+  test('renders a link to github page', () => {
+    render(<ThemeProvider><Footer /></ThemeProvider>);
+    const link = screen.getByRole('link');
+    const svgImg = screen.getByRole('img');
+    expect(link).toHaveAttribute('href', 'https://github.com/Lambtsa/todo-app-react');
+    expect(svgImg).toHaveAttribute('alt', 'Github logo light')
+    expect(svgImg).toHaveAttribute('src', 'github-dark.svg')
+  })
 });
 
 describe('The Main component', () => {
@@ -78,7 +102,7 @@ describe('The Form component', () => {
 });
 
 describe('The Task component', () => {
-  test('renders a list item', () => {
+  test('renders a list item with data', () => {
     const data = {
       id: 1,
       color: 'hsl(36, 60%, 70%)',
@@ -90,5 +114,27 @@ describe('The Task component', () => {
     render(<Task details={data}/>);
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
+  });
+  test('renders a list item after form submit', () => {
+    render(<Main />);
+    const button = screen.getByRole('button');
+    const titleField = screen.getByPlaceholderText('Task name');
+    expect(button).toBeInTheDocument();
+    expect(titleField).toBeInTheDocument();
+    userEvent.paste(titleField, 'test');
+    userEvent.click(button);
+    const taskList = screen.getByRole('list');
+    const newTaskItem = taskList.querySelector('.listItem__title');
+    expect(newTaskItem).toBeInTheDocument()
+  });
+  test('show error message if title field is empty on submit', () => {
+    render(<Main />);
+    const button = screen.getByRole('button');
+    const titleField = screen.getByPlaceholderText('Task name');
+    expect(button).toBeInTheDocument();
+    expect(titleField).toBeInTheDocument();
+    userEvent.click(button);
+    const errorMessage = screen.getByText(/(Please enter a title for your task.)/i);
+    expect(errorMessage).toBeInTheDocument()
   });
 });
