@@ -1,3 +1,4 @@
+@import '../../styles/variables.scss';
 .switch {
   position: relative;
   width: 65px;
@@ -28,26 +29,27 @@
     padding: 0;
     line-height: 2rem;
     font-size: 1.6rem;
-    background-color: rgb(161, 161, 161);
   }
   &:before {
     content: "🌜";
     text-transform: uppercase;
     padding-left: .3rem;
     text-align: left;
+    background-color: $black;
   }
   &:after {
     content: "🌞";
     text-transform: uppercase;
     padding-right: .2rem;
     text-align: right;
+    background-color: $dark-grey;
   }
 }
 .switch-switch {
   display: block;
   width: 25px;
   margin: 3px;
-  background: white;
+  background: $white;
   position: absolute;
   top: 0;
   bottom: 0;

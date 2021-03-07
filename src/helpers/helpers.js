@@ -17,4 +17,13 @@ const createTaskItem = (key, title, description) => {
   return newTask;
 };
 
-export default createTaskItem;
+const findHighestId = arrayOfTasks => {
+  if (arrayOfTasks.length === 0) {
+    return 0;
+  }
+  return arrayOfTasks
+    .map(e => parseInt(e.id, 10))
+    .reduce((a, b) => Math.max(a, b));
+};
+
+export { createTaskItem, taskColorGenerator, findHighestId };

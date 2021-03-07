@@ -1,6 +1,7 @@
 import { render, screen, } from '@testing-library/react';
 import { ThemeProvider } from './helpers/ThemeProvider';
 import App from './App';
+import { taskColorGenerator, createTaskItem, findHighestId } from './helpers/helpers';
 import Header from './components/Header';
 import Main from './components/Main';
 import Form from './components/Form';
@@ -10,6 +11,45 @@ import userEvent from '@testing-library/user-event';
 
 beforeEach(() => {
   window.localStorage.setItem('tasks', JSON.stringify([]));
+})
+
+describe('The helper functions', () => {
+  const mockTasks = [{
+    id: 1,
+    color: 'hsl(36, 60%, 70%)',
+    content: {
+    title: "Call mom",
+    description: "Call mom on Sunday the 7th March",
+    },
+  },
+  {
+    id: 10,
+    color: 'hsl(0, 60%, 70%)',
+    content: {
+    title: "Finish weekend test",
+    description: "finish the weekend test on react apps",
+    },
+  },
+  {
+    id: 13,
+    color: 'hsl(108, 60%, 70%)',
+    content: {
+    title: "Pay bills",
+    description: "Give money to a load of companies",
+    },
+  }];
+  test('The taskColorGenerator should return a hue colour', () => {
+    expect(taskColorGenerator(1)).toBe('hsl(36, 60%, 70%)');
+    expect(taskColorGenerator(13)).toBe('hsl(108, 60%, 70%)');
+    expect(taskColorGenerator(10)).toBe('hsl(0, 60%, 70%)');
+  });
+  test('The createTaskItem should return a task object', () => {
+    expect(createTaskItem(1, "Call mom", 'Call mom on Sunday the 7th March')).toStrictEqual(mockTasks[0]);
+  });
+  test('The findHighestId should return highest number given an array of tasks', () => {
+    expect(findHighestId(mockTasks)).toBe(13);
+    expect(findHighestId([])).toBe(0);
+  })
 })
 
 describe('The Header component', () => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from '../helpers/ThemeProvider';
 import Form from './Form';
 import Task from './Task';
-import createTaskItem from '../helpers/helpers';
+import { createTaskItem, findHighestId } from '../helpers/helpers';
 
 const Main = () => {
   const { theme } = useContext(ThemeContext);
@@ -13,11 +13,11 @@ const Main = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState(false);
-  const [key, setKey] = useState(taskList.length);
+  const [key, setKey] = useState(findHighestId(taskList));
 
   useEffect(() => {
     localStorage.tasks = JSON.stringify(taskList);
-    setKey(taskList.length + 1);
+    setKey(key + 1);
   }, [taskList]);
 
   const handleTaskDelete = id => {

@@ -33,7 +33,7 @@ button {
   padding: 1rem 0;
   z-index: 1000;
   &.light {
-    background-color: $white;
+    background-color: $light-grey;
     color: $dark-grey;
   }
   &.dark {
@@ -113,7 +113,7 @@ button {
     color: $dark-grey;
     border: 1px solid $dark-grey;
     &::placeholder {
-      color: $grey;
+      color: #A1A1A1;
     }
   }
   .form__btn {
@@ -185,13 +185,14 @@ button {
 .listItem__btn {
   padding: .7rem 1rem;
   color: $white;
-  background-color: $black;
+  background-color: $error;
   border-radius: 10px;
   outline: none;
   font-weight: 700;
 }
 .listItem__btn:hover {
   background-color: $error;
+  border: 1px solid $error;
 }
 p.listItem__tag {
   justify-self: center;
@@ -230,7 +231,7 @@ p.listItem__tag {
     color: $white;
   }
   &.light {
-    background-color: $white;
+    background-color: $light-grey;
     color: $dark-grey;
   }
 }
@@ -247,5 +248,9 @@ p.listItem__tag {
   form {
     margin: 0;
     padding: 1rem 0;
+  }
+  .listItem__btn {
+    background-color: $black;
+    border: 1px solid $white;
   }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
