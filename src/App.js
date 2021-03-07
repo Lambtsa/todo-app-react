@@ -5,14 +5,12 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import { ThemeProvider } from './helpers/ThemeProvider';
 
-function App() {
-  return (
-    <ThemeProvider>
-      <Header />
-      <Main />
-      <Footer />
-    </ThemeProvider>
-  );
-}
+const App = () => (
+  <ThemeProvider>
+    <Header />
+    <Main />
+    <Footer />
+  </ThemeProvider>
+);
 
 export default App;
