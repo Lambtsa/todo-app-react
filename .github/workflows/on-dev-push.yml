@@ -6,5 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      - run: npm i react
       - run: npm i eslint-config-salt
       - run: npm run lint
