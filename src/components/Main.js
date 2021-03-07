@@ -16,7 +16,7 @@ const Main = () => {
 
   useEffect(() => {
     localStorage.tasks = JSON.stringify(taskList);
-    setKey(key + 1);
+    setKey(taskList.length + 1);
   }, [taskList]);
 
   const handleTaskDelete = id => {
