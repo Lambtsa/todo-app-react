@@ -3,7 +3,8 @@ import './SwitchToggle.scss';
 import { ThemeContext } from '../../helpers/ThemeProvider';
 
 const SwitchToggle = () => {
-  const { handleThemeToggle } = useContext(ThemeContext);
+  const { theme, handleThemeToggle } = useContext(ThemeContext);
+
   /* eslint-disable */
   return (
     <>
@@ -13,7 +14,8 @@ const SwitchToggle = () => {
           className="switch-checkbox"
           onChange={handleThemeToggle}
           name="themeToggle"
-          id="themeToggle" />
+          id="themeToggle"
+          checked={theme === 'dark'} />
         <label className="switch-label" htmlFor="themeToggle">
           <span className="switch-inner" />
           <span className="switch-switch" />
