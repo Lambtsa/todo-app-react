@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import './SwitchToggle.scss';
+import { ThemeContext } from '../../helpers/ThemeProvider';
 
-const SwitchToggle = ({ name = 'toggle' }) => {
-  const [checked, setChecked] = useState(false);
-
+const SwitchToggle = () => {
+  const { handleThemeToggle } = useContext(ThemeContext);
   /* eslint-disable */
-  useEffect(() => {
-    console.log(checked)
-  }, [checked]);
-
   return (
     <>
-      <form type="submit" className="toggle-switch">
+      <form type="submit" className="switch">
         <input
           type="checkbox"
-          className="toggle-switch-checkbox"
-          onChange={() => setChecked(!checked)}
-          name={name}
-          id={name} />
-        <label className="toggle-switch-label" htmlFor={name}>
-          <span className="toggle-switch-inner" />
-          <span className="toggle-switch-switch" />
+          className="switch-checkbox"
+          onChange={handleThemeToggle}
+          name="themeToggle"
+          id="themeToggle" />
+        <label className="switch-label" htmlFor="themeToggle">
+          <span className="switch-inner" />
+          <span className="switch-switch" />
         </label>
       </form>
     </>
