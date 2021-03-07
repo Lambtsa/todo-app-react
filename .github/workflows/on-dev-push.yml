@@ -8,3 +8,5 @@ jobs:
       - uses: actions/setup-node@v1
       - run: npm i
       - run: npm run lint
+      - run: npm run predeploy
+      - run: npm run deploy
