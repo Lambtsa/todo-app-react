@@ -24,9 +24,27 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+      "salt",
+      "salt/react"
+    ],
+    "rules": {
+      "react/jsx-closing-bracket-location": [
+        "error",
+        {
+          "selfClosing": "after-props",
+          "nonEmpty": "after-props"
+        }
+      ],
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".js"
+          ]
+        }
+      ],
+      "react/prop-types": "off"
+    }
   },
   "browserslist": {
     "production": [
