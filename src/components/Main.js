@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from '../helpers/ThemeProvider';
 import Form from './Form';
 import Task from './Task';
+import Popup from './Popup';
 import { createTaskItem, findHighestId } from '../helpers/helpers';
 
 const Main = () => {
@@ -14,6 +15,7 @@ const Main = () => {
   const [description, setDescription] = useState('');
   const [error, setError] = useState(false);
   const [key, setKey] = useState(findHighestId(taskList));
+  const [popup, setPopup] = useState(false);
 
   useEffect(() => {
     localStorage.tasks = JSON.stringify(taskList);
@@ -23,6 +25,7 @@ const Main = () => {
   const handleTaskDelete = id => {
     const newTaskList = taskList.filter(e => e.id !== id);
     setTaskList(newTaskList);
+    setPopup(true);
   };
 
   const handleFormSubmit = e => {
@@ -63,6 +66,7 @@ const Main = () => {
           </section>
         </div>
       </main>
+      {popup && <Popup title="Test" />}
     </>
   );
 };
